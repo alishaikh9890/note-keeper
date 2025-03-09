@@ -17,10 +17,12 @@ function List({ taskList, delTask, editTask, statusTodo }) {
                     : "bg-light border rounded-3 p-2 shadow-2"
                 }
               >
+                <div className="d-flex justify-content-between">
                 <h5>{ele.task}</h5>
                 <Button variant="text" color="primary">
-                  
+                  📌
                 </Button>
+                </div>
                 <ul className="list-group list-group-flush list-group-item-light">
                   {ele.todos.map((el) => (
                     <li key={el.id} className="list-group-item px-0">
