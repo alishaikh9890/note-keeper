@@ -12,7 +12,7 @@ const AddTask = ({handleTask, setTask, task, count, setCount, handleTodo}) => {
                 <Col lg={8} className="mx-auto p-2 shadow-1 bg-light rounded-4">
                 <div className='d-flex'>
                     <input className='form-control border-0' placeholder="Enter Task" value={task} onChange={(e) =>{ setTask(e.target.value); setCount(1)}}/>
-                    <Button className='rounded-circle  btn btn-outline-secondary btn-sm  my-auto' onClick={handleTask} >➕</Button>
+                    <Button variant='outline-secondary' className='rounded-circle btn-sm my-auto' onClick={handleTask} >➕</Button>
                 </div>
                   
                     <div className="row pe-4">

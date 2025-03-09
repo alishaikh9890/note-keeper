@@ -2,6 +2,7 @@ import React from "react";
 
 import { Container, Row, Col, Button } from "react-bootstrap";
 
+
 function List({ taskList, delTask, editTask, statusTodo }) {
   return (
     <>
@@ -13,11 +14,14 @@ function List({ taskList, delTask, editTask, statusTodo }) {
                 className={
                   ele.status
                     ? "bg-success-subtle border rounded-3 p-2 "
-                    : "bg-primary-subtle border rounded-3 p-2 "
+                    : "bg-light border rounded-3 p-2 shadow-2"
                 }
               >
                 <h5>{ele.task}</h5>
-                <ul className="list-group list-group-flush bg-transparent">
+                <Button variant="text" color="primary">
+                  
+                </Button>
+                <ul className="list-group list-group-flush list-group-item-light">
                   {ele.todos.map((el) => (
                     <li key={el.id} className="list-group-item px-0">
                       <input
