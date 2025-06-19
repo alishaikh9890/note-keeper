@@ -7,18 +7,18 @@ import List from './List';
 
 function Task(){
 
-    const [task, setTask] = useState("");
+    const initialTask = {id:null, title:"", note:"", todo:[], status:false}
+
+    const [task, setTask] = useState(initialTask);
     const [taskList, setTaskList] = useState([])
     const [count, setCount] = useState(0);
-    const [todo, setTodo] = useState([])
-
+    const [openNote, setOpenNote] = useState(false)
 
 
     function statusTodo(ele_id, el_id){
 
         // taskList.map((ele) => ele.id== ele_id ? {...ele, todos.map(el=> el.id == el_id ? {...el, status : !el.status} : el)} : ele)
 
-        
         let newTAsk =  taskList.find(ele => ele.id == ele_id)
         
         
@@ -31,46 +31,50 @@ function Task(){
         setTaskList(newtasklist)
     }
 
-    function handleTodo(ele, index){
+    function handleChange(event, index=-1){
             // todo.push(e)
+            const {name, value} = event.target;
 
-            let newTodo = [...todo];
-
-            newTodo[index] = {
-                to: ele,
-                status: false,
-                id: uuidv4()
+            if(name == "title")
+            {
+                setTask({
+                    ...task,
+                    title:value
+                })
+            } else if(name == "note") 
+            {
+                setTask({
+                    ...task,
+                    note:value
+                })
+            } else if(index != -1 && name=="todo")
+            {
+                let newTodo = [...task.todo];
+                newTodo[index] = {
+                    to: value,
+                    status: false,
+                    id: uuidv4()
+                }
+                setTask({
+                    ...task,
+                    todo:newTodo
+                })
+                setCount(2+index)
             }
-
-            setCount(2+index)
-
-            setTodo(newTodo)
+            console.log(task)
 
     }
 // console.log(todo)
 
     function handleTask(){
 
-        let obj = {
-            task,
-            status: false,
-            todos:todo,
-            id: uuidv4()
-        }
+        setTaskList([...taskList, {...task, id:uuidv4()}])
 
-        // taskList.push(obj);
-    //    taskList  = [...taskList, obj]
-
-        setTaskList([...taskList, obj])
-
-        setTask("")
+        setTask(initialTask)
 
         setCount(0)
-        setTodo([])
-
+        setOpenNote(false)
     }
-
-
 
     function delTask(id){
         // console.log(id)
@@ -78,10 +82,6 @@ function Task(){
 
        setTaskList(update)
     }
-
-
-
-
 
 
     function editTask(id){
@@ -97,8 +97,9 @@ function Task(){
 
   return (
     <>
-        <AddTask handleTask={handleTask} setTask={setTask} task={task} count={count} setCount={setCount} handleTodo={handleTodo}  />
+        <AddTask handleTask={handleTask} setTask={setTask} task={task} count={count} setCount={setCount} handleChange={handleChange} setOpenNote={setOpenNote} openNote={openNote} />
         <List taskList={taskList} delTask={delTask} editTask={editTask} statusTodo ={statusTodo} />
+
     </>
   )
 }

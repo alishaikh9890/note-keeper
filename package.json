@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.13.1",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",
+    "react-textarea-autosize": "^8.5.9",
     "uuid": "^11.1.0"
   },
   "devDependencies": {

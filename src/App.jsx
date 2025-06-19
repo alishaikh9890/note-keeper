@@ -1,7 +1,6 @@
 
-
 import './App.css'
-import Add from './components/Add';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import Task from './task/Task';
 
 
